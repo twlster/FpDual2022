@@ -9,6 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.is;
 
 public class PersonaTest {
 
@@ -27,6 +34,7 @@ public class PersonaTest {
         persona.setApellido("Prieto");
         persona.setEdad(32);
         persona.setFechaNacimiento(LocalDate.of(1989,5,19));
+        persona.setHobbies(Arrays.asList("Trotar", "Video juegos", "Montar en bici"));
     }
 
     @AfterEach
@@ -45,7 +53,10 @@ public class PersonaTest {
         Assumptions.assumeTrue(persona != null);
         String nombre = "Mesa";
         persona.setNombre(nombre.toUpperCase());
-        Assertions.assertEquals(nombre, persona.getNombre());
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(nombre, persona.getNombre()),
+                () -> Assertions.assertNotEquals("Prieto", persona.getApellido()),
+                () -> Assertions.assertEquals(32, persona.getEdad()));
     }
 
     @Test
@@ -54,6 +65,22 @@ public class PersonaTest {
         String apellido = "Mesa";
         persona.setApellido(apellido.toUpperCase());
         Assertions.assertEquals(apellido.toUpperCase(), persona.getApellido());
+    }
+
+    @Test
+    public void setEdad_ok(){
+        Assumptions.assumeTrue(persona != null);
+        int nuevaEdad = 33;
+        persona.setEdad(nuevaEdad);
+        assertThat(persona.getEdad(), closeTo(34, 1));
+    }
+
+    @Test
+    public void setHobbies_ok(){
+        Assumptions.assumeTrue(persona != null);
+        List<String> nuevosHobbies = Arrays.asList("Trotar", "Video juegos", "Montar en bici", "Nadar");
+        persona.setHobbies(nuevosHobbies);
+        assertThat(persona.getHobbies(), is(nuevosHobbies));
     }
 
     @Test

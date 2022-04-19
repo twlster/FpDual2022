@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,7 +17,8 @@ public class Persona {
     private String nombre;
     private String apellido;
     private LocalDate fechaNacimiento;
-    private int edad;
+    private double edad;
+    private List<String> hobbies;
 
     public void setNombre(String nombre){
         this.nombre = nombre.length() <= 1 ? nombre.toUpperCase() :
