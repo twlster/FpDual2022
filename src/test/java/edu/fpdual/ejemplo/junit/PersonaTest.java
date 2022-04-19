@@ -7,6 +7,12 @@ import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -101,6 +107,34 @@ public class PersonaTest {
     @Test
     public void setNombre_ko(){
         Assertions.assertThrows(NullPointerException.class, () -> persona.setNombre(null));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE}) // six numbers
+    void isOdd_ShouldReturnTrueForOddNumbers(int number) {
+        Assertions.assertTrue(number%2!=0);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"  ", "\t", "\n"})
+    void isBlank_ShouldReturnTrueForAllTypesOfBlankStrings(String input) {
+        Assertions.assertTrue(input==null || input.trim().isEmpty());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"test,TEST", "tEst,TEST", "Java,JAVA"})
+    void toUpperCase_ShouldGenerateTheExpectedUppercaseValue(String input, String expected) {
+        String actualValue = input.toUpperCase();
+        Assertions.assertEquals(expected, actualValue);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data/data.csv", numLinesToSkip = 1)
+    void toUpperCase_ShouldGenerateTheExpectedUppercaseValueCSVFile(
+                    String input, String expected) {
+        String actualValue = input.toUpperCase();
+        Assertions.assertEquals(expected, actualValue);
     }
 
 }
