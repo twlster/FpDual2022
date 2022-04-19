@@ -26,7 +26,7 @@ public class PersonaTest {
         persona.setNombre("JOSE");
         persona.setApellido("Prieto");
         persona.setEdad(32);
-        persona.setFechaNacimiento(LocalDate.of(1989,05,19));
+        persona.setFechaNacimiento(LocalDate.of(1989,5,19));
     }
 
     @AfterEach
