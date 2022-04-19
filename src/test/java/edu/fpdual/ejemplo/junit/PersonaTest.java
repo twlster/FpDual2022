@@ -2,6 +2,8 @@ package edu.fpdual.ejemplo.junit;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,10 +42,23 @@ public class PersonaTest {
 
     @Test
     public void setNombre_ok(){
+        Assumptions.assumeTrue(persona != null);
+        String nombre = "Mesa";
+        persona.setNombre(nombre.toUpperCase());
+        Assertions.assertEquals(nombre, persona.getNombre());
+    }
+
+    @Test
+    public void setApellido_ok(){
+        Assumptions.assumeTrue(persona != null);
+        String apellido = "Mesa";
+        persona.setApellido(apellido.toUpperCase());
+        Assertions.assertEquals(apellido.toUpperCase(), persona.getApellido());
     }
 
     @Test
     public void setNombre_ko(){
+        Assertions.assertThrows(NullPointerException.class, () -> persona.setNombre(null));
     }
 
 }
