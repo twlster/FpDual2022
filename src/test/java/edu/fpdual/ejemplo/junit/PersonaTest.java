@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class PersonaTest {
         persona.setNombre(nombre.toUpperCase());
         Assertions.assertAll(
                 () -> Assertions.assertEquals(nombre, persona.getNombre()),
-                () -> Assertions.assertNotEquals("Prieto", persona.getApellido()),
+                () -> Assertions.assertEquals("Prieto", persona.getApellido()),
                 () -> Assertions.assertEquals(32, persona.getEdad()));
     }
 
@@ -81,6 +80,22 @@ public class PersonaTest {
         List<String> nuevosHobbies = Arrays.asList("Trotar", "Video juegos", "Montar en bici", "Nadar");
         persona.setHobbies(nuevosHobbies);
         assertThat(persona.getHobbies(), is(nuevosHobbies));
+    }
+
+    @Test
+    public void setFechaNacimiento_ok(){
+        Assumptions.assumeTrue(persona != null);
+        LocalDate nuevaFecha = LocalDate.of(2006,4,24);
+        persona.setFechaNacimiento(nuevaFecha);
+        assertThat(persona.getFechaNacimiento(), is(nuevaFecha));
+    }
+
+    @Test
+    public void allArgConstructor_ok(){
+        Assumptions.assumeTrue(persona != null);
+        Persona persona2 = new Persona(persona.getNombre(), persona.getApellido(),  persona.getFechaNacimiento(),
+                persona.getEdad(), persona.getHobbies());
+        assertThat(persona, is(persona2));
     }
 
     @Test
