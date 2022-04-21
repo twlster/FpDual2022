@@ -1,6 +1,7 @@
 package edu.fpdual.jdbc.ejemplojdbc.manager.impl;
 
 import edu.fpdual.jdbc.ejemplojdbc.dao.Country;
+import edu.fpdual.jdbc.ejemplojdbc.manager.CountryManager;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  *
  * @author jose.m.prieto.villar
  */
-public class CountryManagerImpl implements CountryManager{
+public class CountryManagerImpl implements CountryManager {
 
     public List<Country> findAllById(Connection con, Set<String> ids) {
         // Creates the SQL command

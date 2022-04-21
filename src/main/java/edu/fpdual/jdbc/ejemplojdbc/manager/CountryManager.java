@@ -1,4 +1,4 @@
-package edu.fpdual.jdbc.ejemplojdbc.manager.impl;
+package edu.fpdual.jdbc.ejemplojdbc.manager;
 
 import edu.fpdual.jdbc.ejemplojdbc.dao.Country;
 
