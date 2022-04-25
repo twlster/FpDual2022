@@ -1,6 +1,5 @@
 package edu.fpdual.jdbc.ejemplojdbc.manager.impl;
 
-import edu.fpdual.jdbc.ejemplojdbc.connector.MySQLConnector;
 import edu.fpdual.jdbc.ejemplojdbc.dao.City;
 import edu.fpdual.jdbc.ejemplojdbc.manager.CityManager;
 
