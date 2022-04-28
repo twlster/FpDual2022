@@ -5,13 +5,13 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane prefHeight="459.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx.controller.PrimaryController">
+<AnchorPane fx:id="anchorPane" prefHeight="459.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx.controller.PrimaryController">
    <children>
       <Pane layoutX="149.0" layoutY="200.0" prefHeight="224.0" prefWidth="400.0">
          <children>
@@ -39,5 +39,6 @@
          </contextMenu>
       </Button>
       <Label layoutX="305.0" layoutY="46.0" text="Primary Window" />
+      <TextField fx:id="campoTexto" layoutX="267.0" layoutY="84.0" />
    </children>
 </AnchorPane>
