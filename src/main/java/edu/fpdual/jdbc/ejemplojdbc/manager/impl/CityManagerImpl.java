@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
  */
 public class CityManagerImpl implements CityManager {
 
+    @Override
     public List<City> findAll(Connection con) {
         // Create general statement
         try (Statement stmt = con.createStatement()) {
@@ -58,7 +59,8 @@ public class CityManagerImpl implements CityManager {
         }
     }
 
-    public City findById(Connection con, int id) {
+    @Override
+    public City findById(Connection con, Integer id) {
         //prepare SQL statement
         String sql = "select * "
                 + "from city a, Country b "
@@ -93,6 +95,79 @@ public class CityManagerImpl implements CityManager {
         }
     }
 
+    @Override
+    public List<City> findAllByIds(Connection con, Set<Integer> ids) {
+        //prepare SQL statement
+        String sql = String.format("select * "
+                + "from city a, Country b "
+                + "where a.CountryCode = b.Code "
+                + "and a.id IN (%s)",
+                ids.stream().map(data -> "\"" + data + "\"").collect(Collectors.joining(", ")));
+
+        // Create general statement
+        try (Statement stmt = con.createStatement()) {
+            // Queries the DB
+            ResultSet result = stmt.executeQuery(sql);
+            // Set before first registry before going through it.
+            result.beforeFirst();
+
+            // Initialize variable
+            List<City> cities = new ArrayList<>();
+
+            // Run through each result
+            while (result.next()) {
+                // Initializes a city per result
+                City city = new City(result);
+                Country country = new Country(result);
+                city.setCountry(country);
+                cities.add(city);
+            }
+
+            return cities;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Set<City> findByCountryCode(Connection con, String countryCode) {
+        //prepare SQL statement
+        String sql = "select * "
+                + "from city a, Country b "
+                + "where  a.CountryCode = b.Code "
+                + "and b.Code = ? ";
+
+        // Create general statement
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            //Add Parameters
+            stmt.setString(1, countryCode);
+            // Queries the DB
+            ResultSet result = stmt.executeQuery();
+            // Set before first registry before going through it.
+            result.beforeFirst();
+
+            // Initialize variable
+            Set<City> cities = new HashSet<>();
+
+            // Run through each result
+            while (result.next()) {
+                // Initializes a city per result
+                City city = new City(result);
+                Country country = new Country(result);
+                city.setCountry(country);
+                cities.add(city);
+            }
+
+            return cities;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * Fills all the countries for each city.
      *
@@ -105,7 +180,7 @@ public class CityManagerImpl implements CityManager {
         Set<String> countryCodes = new HashSet<>(countries.values());
 
         // Looks for all countries and groups them by id.
-        Map<String, Country> countriesMap = new CountryManagerImpl().findAllById(con, countryCodes).stream()
+        Map<String, Country> countriesMap = new CountryManagerImpl().findAllByIds(con, countryCodes).stream()
                 .collect(Collectors.toMap(Country::getId, data -> data));
 
         // Associates the corresponding Country to each City

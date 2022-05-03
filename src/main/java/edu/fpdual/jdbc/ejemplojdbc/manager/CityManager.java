@@ -3,7 +3,7 @@ package edu.fpdual.jdbc.ejemplojdbc.manager;
 import edu.fpdual.jdbc.ejemplojdbc.dao.City;
 
 import java.sql.Connection;
-import java.util.List;
+import java.util.Set;
 
 /**
  * City DTO Manager.
@@ -13,23 +13,14 @@ import java.util.List;
  * @author jose.m.prieto.villar
  *
  */
-public interface CityManager {
+public interface CityManager extends Manager<City, Integer>{
 
     /**
-     * Finds all the cities in the DB
+     * Finds all the entities in the DB based on a list of ids.
      *
      * @param con DB connection
-     * @return a {@link List} of {@link City}
+     * @param countryCode Country code to use for the search
+     * @return a {@link Set} of {@link City}
      */
-    public List<City> findAll(Connection con);
-
-    /**
-     * Find an specific cities from the DB
-     *
-     * @param con DB connection
-     * @param id the city id
-     * @return a {@link List} of {@link City}
-     */
-    public City findById(Connection con, int id);
-
+    Set<City> findByCountryCode(Connection con, String countryCode);
 }
