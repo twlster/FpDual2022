@@ -20,7 +20,7 @@ public class Persona {
     private String apellido;
     private LocalDate fechaNacimiento;
     private double edad;
-    private List<String> hobbies;
+    private List<Hobbies> hobbies;
 
     public void setNombre(String nombre){
         this.nombre = nombre.length() <= 1 ? nombre.toUpperCase() :

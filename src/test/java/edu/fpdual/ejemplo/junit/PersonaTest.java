@@ -45,7 +45,7 @@ public class PersonaTest {
         persona.setApellido("Prieto");
         persona.setEdad(32);
         persona.setFechaNacimiento(LocalDate.of(1989,5,19));
-        persona.setHobbies(Arrays.asList("Trotar", "Video juegos", "Montar en bici"));
+        persona.setHobbies(Arrays.asList(Hobbies.TROTAR, Hobbies.VIDEO_JUEGOS, Hobbies.MONTAR_EN_BICI));
     }
 
     @AfterEach
@@ -91,11 +91,12 @@ public class PersonaTest {
     @Test
     public void setHobbies_ok(){
         assumeTrue(persona != null);
-        List<String> nuevosHobbies = Arrays.asList("Trotar", "Video juegos", "Montar en bici", "Nadar");
+        List<Hobbies> nuevosHobbies = Arrays.asList(Hobbies.TROTAR, Hobbies.VIDEO_JUEGOS, Hobbies.MONTAR_EN_BICI, Hobbies.NADAR);
         persona.setHobbies(nuevosHobbies);
         assertThat(persona.getHobbies(), hasSize(4));
-        assertThat(persona.getHobbies(), hasItem("Trotar"));
+        assertThat(persona.getHobbies(), hasItem(Hobbies.TROTAR));
         assertThat(persona.getHobbies(), is(nuevosHobbies));
+        assertThat(persona.getHobbies().get(0).getMinutos(), is(Hobbies.TROTAR.getMinutos()));
     }
 
     @Test
