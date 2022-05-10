@@ -16,7 +16,7 @@ public class StreamCollection {
 
     public static void main(String[] args) {
 
-        Persona[] personas = new Persona[3];
+        Persona[] personas = new Persona[5];
 
         personas[0] =
                 Persona.builder().nombre("Alejandro").sexo(Sexo.MASCULINO).edad(20).direccion("Periana").hobbies(Collections.singletonList(Hobbies.ESCUCHAR_MUSICA)).build();
@@ -24,10 +24,14 @@ public class StreamCollection {
                 Persona.builder().nombre("Natalia").sexo(Sexo.FEMENINO).edad(45).direccion("Cártama").hobbies(Collections.singletonList(Hobbies.NADAR)).build();
         personas[2] =
                 Persona.builder().nombre("Veronica").sexo(Sexo.FEMENINO).edad(18).direccion("Málaga").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
+        personas[3] =
+                Persona.builder().nombre("Pablo").sexo(Sexo.MASCULINO).edad(18).direccion("Fuengirola").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
+        personas[4] =
+                Persona.builder().nombre("Loren").sexo(Sexo.FEMENINO).edad(19).direccion("Marbella").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
 
 //        imprimirNombres(personas);
-//        agruparPorSexo(personas);
-        imprimirHobbies(personas);
+        agruparPorSexo(personas);
+//        imprimirHobbies(personas);
 
     }
 

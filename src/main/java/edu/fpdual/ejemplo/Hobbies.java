@@ -8,6 +8,8 @@ public enum Hobbies {
     VIDEO_JUEGOS(160, "Shooter"),
     MONTAR_EN_BICI(60, "Montaña"),
     NADAR(30, "50m"),
+    FUTBOL(90, "11"),
+    ATLETISMO(60, "400m"),
     ESCUCHAR_MUSICA(60, null);
 
     private int minutos;
