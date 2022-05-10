@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class Main {
@@ -25,7 +27,7 @@ public class Main {
         System.out.println(fechaActualSpain);
         System.out.println(fechaActualWinipeg.isBefore(fechaActualSpain));
         fechaActualWinipeg = fechaActualWinipeg.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
-        System.out.println(fechaActualWinipeg);
+        System.out.println(fechaActualWinipeg.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)));
     }
 
 }

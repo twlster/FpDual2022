@@ -21,6 +21,7 @@ public class PrimiviteStream {
         System.out.println("-----------------------------------------------");
 
         IntStream.of(integers).filter(integer -> integer <= 30).sorted().forEach(System.out::println);
+        IntStream.of(integers).anyMatch(integer -> integer <= 30);
 
         System.out.println("-----------------------------------------------");
 

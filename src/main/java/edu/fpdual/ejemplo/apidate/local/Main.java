@@ -3,6 +3,8 @@ package edu.fpdual.ejemplo.apidate.local;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        localDate();
+        localDateTime();
 
     }
 
@@ -28,12 +30,12 @@ public class Main {
     }
 
     private static void localDateTime() {
-        LocalDateTime fechaActual = LocalDateTime.of(2022,5,9,13,0,0);
+        LocalDateTime fechaActual = LocalDateTime.now();//LocalDateTime.of(2022,5,10,10,37,15);
         LocalDateTime fechaActualPrecisa = LocalDateTime.now();
         LocalDateTime fechaDesdeString = LocalDateTime.parse("2022-05-10T00:00");
 
-        System.out.println(fechaActual);
-        System.out.println(fechaActualPrecisa);
+        System.out.println(fechaActual.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+        System.out.println(fechaActualPrecisa.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)));
         System.out.println(fechaDesdeString);
 
         System.out.println(fechaActual.isBefore(fechaActualPrecisa));

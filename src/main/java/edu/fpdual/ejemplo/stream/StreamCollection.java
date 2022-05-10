@@ -84,6 +84,7 @@ public class StreamCollection {
 //        System.out.println(hobbies);
 
         List<Persona> personaList = Arrays.asList(personas);
+        //List<List<Hobbies>> hobbies = personaList.stream().map(persona -> persona.getHobbies()).collect(Collectors.toList());
         List<Hobbies> hobbies = personaList.stream().flatMap(persona -> persona.getHobbies().stream()).collect(Collectors.toList());
         System.out.println(hobbies);
 
