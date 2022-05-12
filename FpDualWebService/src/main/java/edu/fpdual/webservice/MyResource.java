@@ -1,6 +1,7 @@
 package edu.fpdual.webservice;
 
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -26,7 +27,7 @@ public class MyResource {
         return "Got it "+nombre+"!";
     }
 
-    @GET
+    @POST
     @Path("nombre/{name}")
     @Produces(MediaType.APPLICATION_XML)
     public String getNombrePorPath(@PathParam("name") String nombre) {
