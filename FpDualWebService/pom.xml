@@ -28,6 +28,7 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <!--JaxRs Jersey Implementation-->
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
       <artifactId>jersey-container-servlet-core</artifactId>
@@ -57,12 +58,18 @@
       <version>3.0.2</version>
       <scope>runtime</scope>
     </dependency>
-
+    <!--Lombok-->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.22</version>
       <optional>true</optional>
+    </dependency>
+    <!--MySql-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.11</version>
     </dependency>
   </dependencies>
   <build>
