@@ -24,7 +24,6 @@ public interface CountryManager extends Manager<Country, String> {
      * @param startSurfaceArea the range start surface area
      * @param endSurfaceArea the range end surface area
      * @return a {@link List} of {@link Country}
-     * @throws {@link SQLException}
      */
     public List<Country> findBySurfaceAreaBetween(Connection con, BigDecimal startSurfaceArea,
                                                   BigDecimal endSurfaceArea) throws SQLException;
