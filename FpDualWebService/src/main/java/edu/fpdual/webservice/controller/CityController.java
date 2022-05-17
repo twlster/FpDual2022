@@ -57,10 +57,10 @@ public class CityController {
             if (cityToDelete != null) {
                 if (cityService.deleteCity(id)) {
                     return Response.status(200).entity(cityToDelete).build();
-                }else{
+                } else {
                     return Response.status(304).entity("City Was Not Deleted").build();
                 }
-            } else{
+            } else {
                 return Response.status(404).entity("City Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -71,10 +71,10 @@ public class CityController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createCity(City city){
+    public Response createCity(City city) {
         try {
             int createdId = cityService.createCity(city);
-            if(createdId > 0){
+            if (createdId > 0) {
                 return Response.status(201).entity(cityService.findById(createdId)).build();
             } else {
                 return Response.status(500).entity("Internal Error During Creating The City").build();
@@ -87,12 +87,17 @@ public class CityController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateCity(City city){
+    public Response updateCity(City city) {
         try {
-            if(cityService.updateCity(city)){
-                return Response.status(200).entity(cityService.findById(city.getId())).build();
+            City cityToDelete = cityService.findById(city.getId());
+            if (cityToDelete != null) {
+                if (cityService.updateCity(city)) {
+                    return Response.status(200).entity(cityService.findById(city.getId())).build();
+                } else {
+                    return Response.status(500).entity("Internal Error During City Update").build();
+                }
             } else {
-                return Response.status(500).entity("Internal Error During City Update").build();
+                return Response.status(404).entity("City Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
