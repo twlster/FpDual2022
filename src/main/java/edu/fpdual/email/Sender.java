@@ -23,6 +23,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Email sender example with and without attachment.
+ * @author jose.m.prieto.villar
+ * @version 1.0
+ */
 public class Sender {
 
     @Setter
@@ -33,6 +38,9 @@ public class Sender {
     @Getter
     Properties credentialProp = new Properties();
 
+    /**
+     * Build the sender class loading the properties from mail and credentials files.
+     */
     public Sender() {
         try {
             // Loads all the properties of file "mail.properties".
@@ -43,6 +51,14 @@ public class Sender {
         }
     }
 
+    /**
+     * Send a simple email with from and recipient address, subject and a simple HTML format content.
+     * @param from from email address
+     * @param to recipient email address
+     * @param subject email subject
+     * @param content email content in html format
+     * @return a {@link boolean} indicating if the email was sent or not.
+     */
     public boolean send(String from, String to, String subject, String content) {
         // Get the Session object.// and pass username and password
         Session session = createSession();
@@ -75,6 +91,15 @@ public class Sender {
 
     }
 
+    /**
+     * Send an email with from and recipient address, subject, d a simple HTML format content and an attached file.
+     * @param from from email address
+     * @param to recipient email address
+     * @param subject email subject
+     * @param text email content in html format
+     * @param content path where the temp file is located
+     * @return a {@link boolean} indicating if the email was sent or not.
+     */
     public boolean send(String from, String to, String subject, String text, String content) throws FileNotFoundException, IOException {
         // Get the Session object.// and pass username and password
         Session session = createSession();
