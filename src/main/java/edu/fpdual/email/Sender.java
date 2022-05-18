@@ -147,9 +147,9 @@ public class Sender {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        new Sender().send("twlster.mk@gmail.com", "mluquelopezwrk@gmail.com", "Hola =D",
+        new Sender().send("twlster.mk@gmail.com", "twlster.mk@gmail.com", "Hola =D",
                 "<b>Asi se envian correos con Java...<b>","c:\\DEV\\temp\\mail.properties");
-//        new Sender().send("twlster.mk@gmail.com", "mluquelopezwrk@gmail.com", "Hola =D",
+//        new Sender().send("twlster.mk@gmail.com", "twlster.mk@gmail.com", "Hola =D",
 //                "<b>Asi se envian correos con Java...<b>");
     }
 
