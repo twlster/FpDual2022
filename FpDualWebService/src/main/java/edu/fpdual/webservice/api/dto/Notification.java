@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement
 public class Notification {
 
     private int id;

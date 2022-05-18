@@ -12,6 +12,9 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Path("/notifications")
 public class NotificationController {
 
@@ -19,6 +22,15 @@ public class NotificationController {
     @Path("/ping")
     public Response ping() {
         return Response.ok().entity("Service online").build();
+    }
+
+    @GET
+    @Path("/get/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNotifications() {
+        List<Notification> notifications = new ArrayList<>();
+        notifications.add(new Notification(5, "john", "test notification"));
+        return Response.ok().entity(notifications).build();
     }
 
     @GET
