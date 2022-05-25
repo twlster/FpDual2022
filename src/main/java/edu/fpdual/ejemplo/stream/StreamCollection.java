@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamCollection {
 
@@ -19,16 +20,17 @@ public class StreamCollection {
         Persona[] personas = new Persona[5];
 
         personas[0] =
-                Persona.builder().nombre("Alejandro").sexo(Sexo.MASCULINO).edad(20).direccion("Periana").hobbies(Collections.singletonList(Hobbies.ESCUCHAR_MUSICA)).build();
+                Persona.builder().nombre("Alejandro").sexo(Sexo.MASCULINO).edad(20).direccion("Periana").hobbies(List.of(Hobbies.ESCUCHAR_MUSICA, Hobbies.VIDEO_JUEGOS)).build();
         personas[1] =
-                Persona.builder().nombre("Natalia").sexo(Sexo.FEMENINO).edad(45).direccion("Cártama").hobbies(Collections.singletonList(Hobbies.NADAR)).build();
+                Persona.builder().nombre("Natalia").sexo(Sexo.FEMENINO).edad(45).direccion("Cártama").hobbies(List.of(Hobbies.NADAR, Hobbies.ESCUCHAR_MUSICA)).build();
         personas[2] =
-                Persona.builder().nombre("Veronica").sexo(Sexo.FEMENINO).edad(18).direccion("Málaga").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
+                Persona.builder().nombre("Veronica").sexo(Sexo.FEMENINO).edad(18).direccion("Málaga").hobbies(List.of(Hobbies.TROTAR, Hobbies.ESCUCHAR_MUSICA)).build();
         personas[3] =
-                Persona.builder().nombre("Pablo").sexo(Sexo.MASCULINO).edad(18).direccion("Fuengirola").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
+                Persona.builder().nombre("Pablo").sexo(Sexo.MASCULINO).edad(18).direccion("Fuengirola").hobbies(List.of(Hobbies.TROTAR, Hobbies.MONTAR_EN_BICI)).build();
         personas[4] =
                 Persona.builder().nombre("Loren").sexo(Sexo.FEMENINO).edad(19).direccion("Marbella").hobbies(Collections.singletonList(Hobbies.TROTAR)).build();
 
+//        imprimirPersonasConHobbieEspecifico(personas, Hobbies.TROTAR);
 //        imprimirNombres(personas);
         agruparPorSexo(personas);
 //        imprimirHobbies(personas);
@@ -40,7 +42,7 @@ public class StreamCollection {
 
 //        Forma tradicional sin usar streams.
 //        Map<Sexo, List<Persona>> mapa = new HashMap<>();
-
+//
 //        for (Persona per: personaList) {
 //            if(mapa.get(per.getSexo())!=null){
 //                List<Persona> lista = mapa.get(per.getSexo());
@@ -73,12 +75,33 @@ public class StreamCollection {
 //            nameList.add(per.getNombre());
 //        }
 
-        List<String> nameList = personaList.stream().map(Persona::getNombre).collect(Collectors.toList());
+        List<String> nameList = personaList.stream().map(persona -> persona.getNombre().toUpperCase()).collect(Collectors.toList());
 
         nameList.forEach(System.out::println);
     }
 
-    private static void imprimirHobbies(Persona[] personas){
+    private static void imprimirPersonasConHobbieEspecifico(Persona[] personas, Hobbies hobbie) {
+
+        List<Persona> personaList = Arrays.asList(personas);
+
+//        Forma tradicional sin usar streams.
+//        List<String> nameList = new ArrayList<>();
+//
+//        for (Persona per : personaList) {
+//            nameList.add(per.getNombre());
+//        }
+
+//        List<String> nameList = Stream.of(personas).map(persona -> persona.getNombre().toUpperCase()).collect(Collectors.toList());
+        List<Persona> nameList = personaList
+                .stream()
+                .filter(persona -> persona.getHobbies().contains(hobbie))
+                //.map(persona -> persona.getNombre().toUpperCase())
+                .collect(Collectors.toList());
+
+        nameList.forEach(persona -> System.out.println(persona.getNombre()));
+    }
+
+    private static void imprimirHobbies(Persona[] personas) {
 
 //        Forma tradicional sin usar streams.
 //        List<Hobbies> hobbies = new ArrayList<>();
@@ -89,9 +112,7 @@ public class StreamCollection {
 
         List<Persona> personaList = Arrays.asList(personas);
         //List<List<Hobbies>> hobbies = personaList.stream().map(persona -> persona.getHobbies()).collect(Collectors.toList());
-        List<Hobbies> hobbies = personaList.stream().flatMap(persona -> persona.getHobbies().stream()).collect(Collectors.toList());
+        List<Hobbies> hobbies = personaList.stream().flatMap(persona -> persona.getHobbies().stream()).distinct().collect(Collectors.toList());
         System.out.println(hobbies);
-
-
     }
 }

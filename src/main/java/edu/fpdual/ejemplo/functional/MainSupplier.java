@@ -16,6 +16,7 @@ public class MainSupplier {
 
             if(texto.length()>1){
                 texto = texto.substring(0, 1).toUpperCase().concat(texto.substring(1).toLowerCase());
+                texto = texto.substring(0, texto.length()-1).concat(texto.substring(texto.length()-1).toUpperCase());
             }else{
                 texto = texto.toUpperCase();
             }

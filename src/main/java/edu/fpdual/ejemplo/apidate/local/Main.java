@@ -12,33 +12,34 @@ public class Main {
 
     public static void main(String[] args) {
 
-        localDateTime();
+        localTime();
 
     }
 
     private static void localDate() {
         LocalDate fechaActual = LocalDate.of(2022,5,9);
         LocalDate fechaActualPrecisa = LocalDate.now();
-        LocalDate fechaDesdeString = LocalDate.parse("2022-05-10");
+        LocalDate fechaDesdeString = LocalDate.parse("2022-05-25");
 
         System.out.println(fechaActual);
         System.out.println(fechaActualPrecisa);
         System.out.println(fechaDesdeString);
 
         System.out.println(fechaActual.isEqual(fechaDesdeString));
-        System.out.println(ChronoUnit.DAYS.between(fechaActual, fechaDesdeString));
+        System.out.println(ChronoUnit.WEEKS.between(fechaActual, fechaDesdeString));
     }
 
     private static void localDateTime() {
-        LocalDateTime fechaActual = LocalDateTime.now();//LocalDateTime.of(2022,5,10,10,37,15);
+        LocalDateTime fechaActual = LocalDateTime.of(2022,5,10,10,37,15);
         LocalDateTime fechaActualPrecisa = LocalDateTime.now();
         LocalDateTime fechaDesdeString = LocalDateTime.parse("2022-05-10T00:00");
 
         System.out.println(fechaActual.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
-        System.out.println(fechaActualPrecisa.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)));
+        //System.out.println(fechaActualPrecisa.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)));
         System.out.println(fechaDesdeString);
 
         System.out.println(fechaActual.isBefore(fechaActualPrecisa));
+        System.out.println(fechaActual.minusYears(2));
     }
 
     private static void localTime() {
@@ -49,6 +50,7 @@ public class Main {
         System.out.println(fechaActual);
         System.out.println(fechaActualPrecisa);
         System.out.println(fechaDesdeString);
+        System.out.println(fechaDesdeString.format(DateTimeFormatter.ofPattern("HH-mm-ss")));
 
         System.out.println(fechaActual.isBefore(fechaActualPrecisa));
     }

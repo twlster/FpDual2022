@@ -21,12 +21,16 @@ public class Main {
     }
 
     private static void zonedDateTime() {
-        ZonedDateTime fechaActualWinipeg = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("America/Winnipeg"));
-        ZonedDateTime fechaActualSpain = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("Europe/Madrid"));
+
+        Instant instant = Instant.now();
+
+        ZonedDateTime fechaActualWinipeg = ZonedDateTime.ofInstant(instant, ZoneId.of("America/Winnipeg"));
+        ZonedDateTime fechaActualSpain = ZonedDateTime.ofInstant(instant, ZoneId.of("Europe/Madrid"));
         System.out.println(fechaActualWinipeg);
         System.out.println(fechaActualSpain);
         System.out.println(fechaActualWinipeg.isBefore(fechaActualSpain));
         fechaActualWinipeg = fechaActualWinipeg.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
+        System.out.println(fechaActualWinipeg);
         System.out.println(fechaActualWinipeg.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)));
     }
 

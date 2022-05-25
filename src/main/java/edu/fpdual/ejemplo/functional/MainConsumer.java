@@ -18,6 +18,8 @@ public class MainConsumer {
             System.out.println(texto);
         };
 
+        stringConsumer = stringConsumer.andThen(texto -> System.out.println(texto.toUpperCase()));
+
         while(true){
 
             String resultado = sc.nextLine();
