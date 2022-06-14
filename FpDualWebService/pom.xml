@@ -71,6 +71,12 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.11</version>
     </dependency>
+    <!--MongoDB-->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.4.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>FpDualWebService</finalName>

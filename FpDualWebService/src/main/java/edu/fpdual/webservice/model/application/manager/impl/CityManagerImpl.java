@@ -1,9 +1,9 @@
-package edu.fpdual.webservice.model.manager.impl;
+package edu.fpdual.webservice.model.application.manager.impl;
 
 
-import edu.fpdual.webservice.model.dao.City;
-import edu.fpdual.webservice.model.dao.Country;
-import edu.fpdual.webservice.model.manager.CityManager;
+import edu.fpdual.webservice.model.application.dao.City;
+import edu.fpdual.webservice.model.application.dao.Country;
+import edu.fpdual.webservice.model.application.manager.CityManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package edu.fpdual.webservice.model.dao;
+package edu.fpdual.webservice.model.application.dao;
 
 
 import java.math.BigDecimal;

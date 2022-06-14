@@ -1,6 +1,6 @@
-package edu.fpdual.webservice.model.manager;
+package edu.fpdual.webservice.model.application.manager;
 
-import edu.fpdual.webservice.model.dao.City;
+import edu.fpdual.webservice.model.application.dao.City;
 
 import java.sql.Connection;
 import java.util.Set;

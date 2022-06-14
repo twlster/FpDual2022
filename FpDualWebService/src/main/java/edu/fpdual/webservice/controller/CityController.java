@@ -1,8 +1,9 @@
 package edu.fpdual.webservice.controller;
 
 
-import edu.fpdual.webservice.model.dao.City;
-import edu.fpdual.webservice.model.manager.impl.CityManagerImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import edu.fpdual.webservice.model.application.dao.City;
+import edu.fpdual.webservice.model.application.manager.impl.CityManagerImpl;
 import edu.fpdual.webservice.service.CityService;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -16,7 +17,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
-import java.util.List;
 
 @Path("/city")
 public class CityController {
@@ -29,7 +29,7 @@ public class CityController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findAll() throws SQLException, ClassNotFoundException {
+    public Response findAll() throws SQLException, ClassNotFoundException, JsonProcessingException {
         return Response.ok().entity(cityService.findAll()).build();
     }
 

@@ -1,6 +1,6 @@
-package edu.fpdual.webservice.model.manager;
+package edu.fpdual.webservice.model.application.manager;
 
-import edu.fpdual.webservice.model.dao.Country;
+import edu.fpdual.webservice.model.application.dao.Country;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

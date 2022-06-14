@@ -1,4 +1,4 @@
-package edu.fpdual.webservice.model.conector;
+package edu.fpdual.webservice.model.application.conector;
 
 public class MySQLConstants {
 

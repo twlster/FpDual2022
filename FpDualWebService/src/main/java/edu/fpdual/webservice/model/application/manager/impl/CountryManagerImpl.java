@@ -1,7 +1,7 @@
-package edu.fpdual.webservice.model.manager.impl;
+package edu.fpdual.webservice.model.application.manager.impl;
 
-import edu.fpdual.webservice.model.dao.Country;
-import edu.fpdual.webservice.model.manager.CountryManager;
+import edu.fpdual.webservice.model.application.dao.Country;
+import edu.fpdual.webservice.model.application.manager.CountryManager;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
